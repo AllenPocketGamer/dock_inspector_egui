@@ -58,6 +58,10 @@ pub fn set_camera_viewport(
     egui_settings: Query<&bevy_egui::EguiSettings>,
     mut cameras: Query<&mut Camera, With<DockInsepctorCamera>>,
 ) {
+    if cameras.is_empty() {
+        return;
+    }
+    
     let mut cam = cameras.single_mut();
 
     let Ok(window) = primary_window.get_single() else {
